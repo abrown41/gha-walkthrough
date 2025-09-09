@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]  # Add versions up to 3.12
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
     steps:
       - name: Check out code 
         uses: actions/checkout@v4
@@ -20,12 +20,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
+      - name: Install dependencies and package  # Fix to use pyproject.toml
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
-      - name: Install package
-        run: python setup.py install
+          python -m pip install --upgrade pip build
+          pip install .
+          pip install .[dev]
       - name: Lint
         run: flake8 .
       - name: Run tests
