@@ -19,4 +19,9 @@ dev = [
     "pytest>=7",
     "coverage",
     "flake8",
+    "mypy",
 ]
+
+[tool.mypy]
+warn_unreachable = true
+exclude = '(^|/)(build|draft)/'
