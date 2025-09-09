@@ -12,4 +12,4 @@ chr1	100	200	feature2	0	+
 chr1	150	500	feature3	0	-
 chr1	900	950	feature4	0	+
 """
-    assert str(sort_bed(bed)) != bed_sorted
+    assert str(sort_bed(bed)) == bed_sorted
